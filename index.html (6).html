@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashvi Cafe Corner | Sanquelim, Goa | You Will Like It</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cafe: {
+              black: '#0A0807',
+              dark: '#120E0C',
+              card: '#1A1512',
+              border: '#2E2620',
+              gold: '#D4AF37',
+              goldHover: '#F3C649',
+              goldMuted: '#9E8024',
+              accent: '#E65100',
+              cream: '#F7F4EE',
+              muted: '#A39992'
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background-color: #0A0807;
+      color: #F7F4EE;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0807;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2E2620;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* Custom Glow Effects */
+    .gold-glow {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.18);
+    }
+    .gold-glow-lg {
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.25);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF0BA 0%, #D4AF37 50%, #A88214 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-border-gradient {
+      border-image: linear-gradient(to bottom right, #D4AF37, #2E2620) 1;
+    }
+
+    /* Glassmorphism */
+    .glass-panel {
+      background: rgba(26, 21, 18, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .glass-nav {
+      background: rgba(10, 8, 7, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    }
+
+    /* Image zoom container */
+    .img-zoom-container {
+      overflow: hidden;
+    }
+    .img-zoom-container img {
+      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .img-zoom-container:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Custom Floating Animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    /* Custom Cursor */
+    @media (min-width: 1024px) {
+      .custom-cursor {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #D4AF37;
+        border-radius: 50%;
+        z-index: 9999;
+        transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+        transform: translate(-50%, -50%);
+      }
+      .custom-cursor-dot {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        background: #D4AF37;
+        border-radius: 50%;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-cafe-gold selection:text-cafe-black">
+
+  <!-- Custom Cursor Elements -->
+  <div id="cursor" class="custom-cursor hidden lg:block"></div>
+  <div id="cursor-dot" class="custom-cursor-dot hidden lg:block"></div>
+
+  <!-- Navigation Header -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo / Brand Title -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-cafe-gold/40 flex items-center justify-center bg-cafe-black group-hover:border-cafe-gold transition-colors duration-300">
+          <i data-lucide="coffee" class="w-5 h-5 text-cafe-gold"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-cinzel text-lg sm:text-xl font-bold tracking-wider text-cafe-cream group-hover:text-cafe-gold transition-colors">ASHVI CAFÉ</span>
+          <span class="text-[10px] font-sans tracking-[0.2em] text-cafe-gold uppercase">You Will Like It</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-sans text-xs tracking-widest uppercase">
+        <a href="#about" class="text-cafe-cream/80 hover:text-cafe-gold transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cafe-gold hover:after:w-full after:transition-all">About Us</a>
+        <a href="#signature" class="text-cafe-cream/80 hover:text-cafe-gold transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cafe-gold hover:after:w-full after:transition-all">Specialties</a>
+        <a href="#menu" class="text-cafe-cream/80 hover:text-cafe-gold transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cafe-gold hover:after:w-full after:transition-all">Full Menu</a>
+        <a href="#gallery" class="text-cafe-cream/80 hover:text-cafe-gold transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cafe-gold hover:after:w-full after:transition-all">Gallery</a>
+        <a href="#contact" class="text-cafe-cream/80 hover:text-cafe-gold transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cafe-gold hover:after:w-full after:transition-all">Location</a>
+      </nav>
+
+      <!-- Action Button & Mobile Trigger -->
+      <div class="flex items-center gap-4">
+        <a href="#order" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cafe-gold to-yellow-600 text-cafe-black font-semibold text-xs tracking-wider uppercase hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all transform hover:-translate-y-0.5">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span>Order Now</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 text-cafe-cream hover:text-cafe-gold transition-colors" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-cafe-border px-6 py-6 space-y-4">
+      <a href="#about" class="mobile-link block text-sm tracking-widest uppercase text-cafe-cream hover:text-cafe-gold py-2">About Us</a>
+      <a href="#signature" class="mobile-link block text-sm tracking-widest uppercase text-cafe-cream hover:text-cafe-gold py-2">Specialties</a>
+      <a href="#menu" class="mobile-link block text-sm tracking-widest uppercase text-cafe-cream hover:text-cafe-gold py-2">Full Menu</a>
+      <a href="#gallery" class="mobile-link block text-sm tracking-widest uppercase text-cafe-cream hover:text-cafe-gold py-2">Gallery</a>
+      <a href="#contact" class="mobile-link block text-sm tracking-widest uppercase text-cafe-cream hover:text-cafe-gold py-2">Location & Hours</a>
+      <a href="#order" class="mobile-link inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-cafe-gold text-cafe-black font-bold text-xs uppercase tracking-wider">
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+        <span>Order on Swiggy</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-cafe-black via-cafe-dark to-cafe-black">
+    
+    <!-- Background Ambient Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cafe-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cafe-gold/30 bg-cafe-gold/10 text-cafe-gold text-xs font-semibold tracking-widest uppercase">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+            <span>Sanquelim, Goa's Favorite Cafe</span>
+          </div>
+
+          <h1 class="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-extrabold text-cafe-cream leading-tight">
+            Craving Flavor? <br>
+            <span class="gold-gradient-text italic font-serif">You Will Like It.</span>
+          </h1>
+
+          <p class="text-cafe-muted text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Welcome to <strong class="text-cafe-cream">Ashvi Cafe Corner</strong>. From piping hot handcrafted Paneer Capsicum Pizzas to sesame-studded golden burgers, crispy momos, and refreshing cold beverages — we craft comfort food memories in the heart of Sanquelim.
+          </p>
+
+          <!-- Hero Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-full bg-cafe-gold text-cafe-black font-bold text-xs uppercase tracking-widest hover:bg-cafe-goldHover transition-all transform hover:scale-105 shadow-lg shadow-cafe-gold/20 flex items-center justify-center gap-2">
+              <span>Explore Menu</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#order" class="w-full sm:w-auto px-8 py-4 rounded-full border border-cafe-gold/40 text-cafe-cream hover:bg-cafe-gold/10 hover:border-cafe-gold font-semibold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2">
+              <i data-lucide="truck" class="w-4 h-4 text-cafe-gold"></i>
+              <span>Order Delivery</span>
+            </a>
+          </div>
+
+          <!-- Feature Highlights Badge Bar -->
+          <div class="grid grid-cols-3 gap-4 pt-8 border-t border-cafe-border/60 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="font-cinzel text-xl font-bold text-cafe-gold">100%</p>
+              <p class="text-xs text-cafe-muted uppercase tracking-wider">Fresh Made</p>
+            </div>
+            <div>
+              <p class="font-cinzel text-xl font-bold text-cafe-gold">4.8 ★</p>
+              <p class="text-xs text-cafe-muted uppercase tracking-wider">Local Favorite</p>
+            </div>
+            <div>
+              <p class="font-cinzel text-xl font-bold text-cafe-gold">Fast</p>
+              <p class="text-xs text-cafe-muted uppercase tracking-wider">Door Delivery</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Featured Imagery Showcase -->
+        <div class="lg:col-span-5 relative">
+          <!-- Main Hero Image Frame -->
+          <div class="relative rounded-3xl p-3 bg-gradient-to-b from-cafe-gold/30 via-cafe-border to-transparent gold-glow">
+            <div class="rounded-2xl overflow-hidden img-zoom-container bg-cafe-card relative aspect-[4/5]">
+              <img src="Screenshot 2026-10-02 191023.jpg" alt="Ashvi Cafe Gourmet Paneer Pizza" class="w-full h-full object-cover">
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-cafe-black via-transparent to-transparent opacity-80"></div>
+              
+              <!-- Floating Overlay Tag -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl glass-panel flex items-center justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-cafe-gold font-bold">Chef's Special</p>
+                  <p class="font-cinzel text-sm text-cafe-cream font-bold">Gourmet Paneer Capsicum Pizza</p>
+                </div>
+                <span class="text-cafe-gold font-bold font-cinzel text-lg">₹190</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini Floating Badge Photo 1 -->
+          <div class="absolute -top-6 -left-6 w-28 h-28 rounded-2xl overflow-hidden border-2 border-cafe-gold shadow-2xl hidden sm:block animate-float">
+            <img src="Screenshot 2026-10-02 191031.jpg" alt="Veg Gourmet Burger" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Mini Floating Badge Photo 2 -->
+          <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-2xl overflow-hidden border-2 border-cafe-gold shadow-2xl hidden sm:block animate-float" style="animation-delay: -3s;">
+            <img src="Screenshot 2026-10-02 191017.jpg" alt="Golden Pizza Slice" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / STORE FRONT SECTION -->
+  <section id="about" class="py-20 bg-cafe-dark border-y border-cafe-border/50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Storefront Image Grid -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden border border-cafe-border img-zoom-container h-64 sm:h-80 shadow-lg">
+            <img src="Screenshot 2026-10-02 191112_2.jpg" alt="Ashvi Cafe Corner Storefront" class="w-full h-full object-cover">
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-cafe-border img-zoom-container h-64 sm:h-80 shadow-lg mt-8">
+            <img src="Screenshot 2026-10-02 191004.jpg" alt="Ashvi Cafe Corner Evening Signboard" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+        <!-- Store Story Content -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 text-cafe-gold text-xs font-semibold uppercase tracking-widest">
+            <span class="w-8 h-[1px] bg-cafe-gold"></span>
+            <span>Welcome To Our Corner</span>
+          </div>
+
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cafe-cream">
+            A Cozy Corner for Great Bites & Good Vibes
+          </h2>
+
+          <p class="text-cafe-muted text-sm sm:text-base leading-relaxed">
+            Located right in <span class="text-cafe-cream font-semibold">Vithalapur Karapur, Sanquelim</span>, Ashvi Cafe Corner was created with a simple belief: fast food should be delicious, wholesome, fresh, and served with warmth.
+          </p>
+
+          <p class="text-cafe-muted text-sm sm:text-base leading-relaxed">
+            Whether you are dropping by after work for a warm grilled sandwich, hanging out with friends over a pizza feast, or ordering a crisp burger combo right to your doorstep, our kitchen works with pure passion to ensure <em class="text-cafe-gold">"You Will Like It"</em> every single time.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 border-t border-cafe-border/60">
+            <div class="flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-cafe-gold/10 border border-cafe-gold/20 text-cafe-gold">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-cafe-cream text-sm">Quality Ingredients</h3>
+                <p class="text-xs text-cafe-muted">Fresh veggies, melting cheese & rich spices.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-cafe-gold/10 border border-cafe-gold/20 text-cafe-gold">
+                <i data-lucide="heart" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-cafe-cream text-sm">Warm Hospitality</h3>
+                <p class="text-xs text-cafe-muted">A cozy, welcoming spot for everyone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE DISHES SHOWCASE -->
+  <section id="signature" class="py-24 bg-cafe-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-cafe-gold text-xs font-semibold uppercase tracking-widest">Handcrafted Favorites</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cafe-cream mt-2">Signature Delights</h2>
+        <div class="w-16 h-0.5 bg-cafe-gold mx-auto mt-4"></div>
+      </div>
+
+      <!-- Grid Showcase -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Dish 1: Gourmet Paneer Capsicum Pizza -->
+        <div class="rounded-2xl glass-panel overflow-hidden border border-cafe-border hover:border-cafe-gold/50 transition-all duration-300 group gold-glow">
+          <div class="h-60 overflow-hidden relative">
+            <img src="Screenshot 2026-10-02 191023.jpg" alt="Paneer Capsicum Pizza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <span class="absolute top-4 right-4 bg-cafe-black/80 backdrop-blur-md text-cafe-gold text-xs font-bold px-3 py-1 rounded-full border border-cafe-gold/30">BESTSELLER</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h3 class="font-cinzel text-lg font-bold text-cafe-cream group-hover:text-cafe-gold transition-colors">Paneer Capsicum Special Pizza</h3>
+              <span class="font-cinzel text-lg font-bold text-cafe-gold">₹190</span>
+            </div>
+            <p class="text-xs text-cafe-muted leading-relaxed">Loaded with juicy paneer cubes, crisp green bell peppers, fresh sliced onions, tomato garlic base sauce, and melted mozzarella cheese.</p>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-[11px] text-emerald-400 font-semibold uppercase flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Veg Item
+              </span>
+              <a href="#order" class="text-xs font-bold text-cafe-gold hover:text-cafe-cream transition-colors flex items-center gap-1">
+                Order Now <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dish 2: Gourmet Sesame Veg Burger -->
+        <div class="rounded-2xl glass-panel overflow-hidden border border-cafe-border hover:border-cafe-gold/50 transition-all duration-300 group">
+          <div class="h-60 overflow-hidden relative">
+            <img src="Screenshot 2026-10-02 191031.jpg" alt="Sesame Seed Burger" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <span class="absolute top-4 right-4 bg-cafe-black/80 backdrop-blur-md text-cafe-gold text-xs font-bold px-3 py-1 rounded-full border border-cafe-gold/30">POPULAR</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h3 class="font-cinzel text-lg font-bold text-cafe-cream group-hover:text-cafe-gold transition-colors">Golden Sesame Crunch Burger</h3>
+              <span class="font-cinzel text-lg font-bold text-cafe-gold">₹90</span>
+            </div>
+            <p class="text-xs text-cafe-muted leading-relaxed">Toasted artisan sesame seed bun layered with crisp lettuce, fresh tomatoes, house mayonnaise, and a spiced golden veggie patty.</p>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-[11px] text-emerald-400 font-semibold uppercase flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Veg / Chicken
+              </span>
+              <a href="#order" class="text-xs font-bold text-cafe-gold hover:text-cafe-cream transition-colors flex items-center gap-1">
+                Order Now <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dish 3: Sweetcorn Pineapple Pizza Slice Special -->
+        <div class="rounded-2xl glass-panel overflow-hidden border border-cafe-border hover:border-cafe-gold/50 transition-all duration-300 group">
+          <div class="h-60 overflow-hidden relative">
+            <img src="Screenshot 2026-10-02 191017.jpg" alt="Golden Sweetcorn & Capsicum Pizza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <span class="absolute top-4 right-4 bg-cafe-black/80 backdrop-blur-md text-cafe-gold text-xs font-bold px-3 py-1 rounded-full border border-cafe-gold/30">CHEF FAV</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h3 class="font-cinzel text-lg font-bold text-cafe-cream group-hover:text-cafe-gold transition-colors">Italian Sweetcorn Delight</h3>
+              <span class="font-cinzel text-lg font-bold text-cafe-gold">₹180</span>
+            </div>
+            <p class="text-xs text-cafe-muted leading-relaxed">Golden sweet corn kernels paired with onions, fresh cilantro garnishing, special herbs, and rich stringy cheese melt on a crispy crust.</p>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-[11px] text-emerald-400 font-semibold uppercase flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Veg Item
+              </span>
+              <a href="#order" class="text-xs font-bold text-cafe-gold hover:text-cafe-cream transition-colors flex items-center gap-1">
+                Order Now <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL INTERACTIVE MENU SECTION -->
+  <section id="menu" class="py-24 bg-cafe-dark border-t border-cafe-border/50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-cafe-gold text-xs font-semibold uppercase tracking-widest">Fresh & Hot</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cafe-cream mt-2">Explore Our Full Menu</h2>
+        <p class="text-cafe-muted text-xs sm:text-sm mt-3">Select a category below to filter our cafe offerings.</p>
+      </div>
+
+      <!-- Menu Category Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12" id="menu-filter-buttons">
+        <button data-filter="all" class="menu-tab active px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all bg-cafe-gold text-cafe-black">All Items</button>
+        <button data-filter="pizzas" class="menu-tab px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all bg-cafe-card text-cafe-cream/80 hover:text-cafe-gold border border-cafe-border">Pizzas</button>
+        <button data-filter="burgers" class="menu-tab px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all bg-cafe-card text-cafe-cream/80 hover:text-cafe-gold border border-cafe-border">Burgers</button>
+        <button data-filter="momos" class="menu-tab px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all bg-cafe-card text-cafe-cream/80 hover:text-cafe-gold border border-cafe-border">Momos & Toasties</button>
+        <button data-filter="fries" class="menu-tab px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all bg-cafe-card text-cafe-cream/80 hover:text-cafe-gold border border-cafe-border">Sides & Beverages</button>
+      </div>
+
+      <!-- Filterable Menu Cards Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-grid">
+        
+        <!-- Menu Item 1: Paneer Pizza -->
+        <div class="menu-card pizzas rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Paneer Capsicum Pizza</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹190</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Paneer chunks, sliced bell peppers, onion, garlic tomato sauce & cheese blend.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Paneer Capsicum Pizza', '₹190', 'Screenshot 2026-10-02 191023.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 2: Italian Sweetcorn Pizza -->
+        <div class="menu-card pizzas rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Italian Sweet Corn Pizza</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹180</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Juicy sweet corn, onion, fresh herbs, mozzarella and signature pizza sauce.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Italian Sweet Corn Pizza', '₹180', 'Screenshot 2026-10-02 191017.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 3: Gourmet Veg Burger -->
+        <div class="menu-card burgers rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Gourmet Veg Sesame Burger</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹70</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Crispy fried vegetable patty, mayonnaise, fresh tomato slice & green lettuce in sesame bun.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Gourmet Veg Sesame Burger', '₹70', 'Screenshot 2026-10-02 191031.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 4: Super Spicy Chicken Burger -->
+        <div class="menu-card burgers rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Spicy Crunchy Chicken Burger</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹90</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Fried crunchy chicken patty, spiced chili mayo, lettuce & crisp onion rings.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-rose-400 font-semibold uppercase">Non-Veg</span>
+            <button onclick="openModal('Spicy Crunchy Chicken Burger', '₹90', 'Screenshot 2026-10-02 191031.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 5: Crispy Fried Momos -->
+        <div class="menu-card momos rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Golden Fried Veg Momos</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹80</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Deep fried golden dumplings filled with seasoned vegetables, served with red chili chutney.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Golden Fried Veg Momos', '₹80', 'Screenshot 2026-10-02 191112_2.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 6: Grilled Toast Sandwich -->
+        <div class="menu-card momos rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Club Cheese Grilled Toast</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹80</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Crispy butter-grilled bread slices with spiced potato, cheese slice, cucumber & mint sauce.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Club Cheese Grilled Toast', '₹80', 'Screenshot 2026-10-02 191112_2.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 7: Salted French Fries -->
+        <div class="menu-card fries rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Classic Salted French Fries</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹70</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Crispy golden potato fries lightly salted, served with rich tomato ketchup.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-emerald-400 font-semibold uppercase">Veg</span>
+            <button onclick="openModal('Classic Salted French Fries', '₹70', 'Screenshot 2026-10-02 191112_2.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+        <!-- Menu Item 8: Ice Cold Beverage -->
+        <div class="menu-card fries rounded-2xl glass-panel p-5 border border-cafe-border hover:border-cafe-gold/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-cinzel text-base font-bold text-cafe-cream">Chilled Blue Mojito / Soft Drinks</h3>
+              <span class="text-cafe-gold font-bold font-cinzel">₹60</span>
+            </div>
+            <p class="text-xs text-cafe-muted">Refreshing cold mocktails and carbonated beverages to complement your meals.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cafe-border/50 flex items-center justify-between">
+            <span class="text-[10px] text-blue-400 font-semibold uppercase">Beverage</span>
+            <button onclick="openModal('Chilled Blue Mojito', '₹60', 'Screenshot 2026-10-02 191112_2.jpg')" class="text-xs font-semibold text-cafe-gold hover:underline">Quick Preview</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION WITH LIGHTBOX -->
+  <section id="gallery" class="py-24 bg-cafe-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-cafe-gold text-xs font-semibold uppercase tracking-widest">Real Food Photos</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cafe-cream mt-2">Captured Moments & Food Shots</h2>
+        <p class="text-cafe-muted text-xs sm:text-sm mt-3">Click on any photo to inspect up close.</p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Photo 1: Store Front Day -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Ashvi Cafe Corner Entrance', 'Store Front', 'Screenshot 2026-10-02 191112_2.jpg')">
+          <img src="Screenshot 2026-10-02 191112_2.jpg" alt="Ashvi Cafe Front Banner" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2: Evening Signboard -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Warm Illuminated Signboard', 'Night View', 'Screenshot 2026-10-02 191004.jpg')">
+          <img src="Screenshot 2026-10-02 191004.jpg" alt="Ashvi Cafe Night Entrance" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3: Paneer Pizza -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Paneer Capsicum Hot Pizza', 'Fresh Baked', 'Screenshot 2026-10-02 191023.jpg')">
+          <img src="Screenshot 2026-10-02 191023.jpg" alt="Paneer Pizza Close Up" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4: Sesame Seed Burger -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Sesame Bun Gourmet Burger', 'Freshly Prepared', 'Screenshot 2026-10-02 191031.jpg')">
+          <img src="Screenshot 2026-10-02 191031.jpg" alt="Gourmet Sesame Burger" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5: Pizza Slice Close Up -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Italian Corn Pizza Slice', 'Cheesy Bite', 'Screenshot 2026-10-02 191017.jpg')">
+          <img src="Screenshot 2026-10-02 191017.jpg" alt="Pizza Slice Zoom" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 6: Store Menu Banner -->
+        <div class="rounded-2xl overflow-hidden border border-cafe-border cursor-pointer img-zoom-container relative group h-72 shadow-xl" onclick="openModal('Ashvi Cafe Sign Banner', 'Official Sign', 'Screenshot 2026-10-02 191112_2.jpg')">
+          <img src="Screenshot 2026-10-02 191112_2.jpg" alt="Cafe Banner" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-cafe-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="p-3 rounded-full bg-cafe-gold text-cafe-black">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER DELIVERY SECTION -->
+  <section id="order" class="py-20 bg-gradient-to-r from-amber-950/40 via-cafe-dark to-amber-950/40 border-y border-cafe-border/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <div class="max-w-3xl mx-auto space-y-6">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cafe-gold/30 bg-cafe-gold/10 text-cafe-gold text-xs font-semibold uppercase tracking-widest">
+          <i data-lucide="bike" class="w-4 h-4"></i>
+          <span>Fast Home Delivery</span>
+        </span>
+
+        <h2 class="font-cinzel text-3xl sm:text-5xl font-extrabold text-cafe-cream">
+          Hungry At Home? <br>
+          <span class="gold-gradient-text">We Deliver To Your Doorstep</span>
+        </h2>
+
+        <p class="text-cafe-muted text-sm sm:text-base leading-relaxed">
+          Craving our Paneer Pizza or Crispy Burgers in Sanquelim? Order directly on Swiggy or call our cafe line for fast pick-up and delivery.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <!-- Swiggy Direct CTA -->
+          <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-600 text-white font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-3">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span>Order on Swiggy</span>
+          </a>
+
+          <!-- Call Cafe CTA -->
+          <a href="tel:+919876543210" class="w-full sm:w-auto px-8 py-4 rounded-full border border-cafe-gold text-cafe-gold hover:bg-cafe-gold hover:text-cafe-black font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+            <span>Call Corner: +91 98765 43210</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOCATION & CONTACT SECTION -->
+  <section id="contact" class="py-24 bg-cafe-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Contact Details Column -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-cafe-gold text-xs font-semibold uppercase tracking-widest">Visit Us</span>
+            <h2 class="font-cinzel text-3xl font-bold text-cafe-cream mt-2">Cafe Location & Hours</h2>
+            <div class="w-12 h-0.5 bg-cafe-gold mt-3"></div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <!-- Address Card -->
+            <div class="flex items-start gap-4 p-4 rounded-xl glass-panel border border-cafe-border">
+              <div class="p-3 rounded-lg bg-cafe-gold/10 text-cafe-gold border border-cafe-gold/20">
+                <i data-lucide="map-pin" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-cafe-cream text-sm font-cinzel">Official Address</h3>
+                <p class="text-xs text-cafe-muted mt-1 leading-relaxed">
+                  Shop No. 14, Ground Floor, House No. 468,<br>
+                  Vithalapur Karapur, Zariwada, Sanquelim,<br>
+                  Goa - 403529
+                </p>
+              </div>
+            </div>
+
+            <!-- Opening Hours Card -->
+            <div class="flex items-start gap-4 p-4 rounded-xl glass-panel border border-cafe-border">
+              <div class="p-3 rounded-lg bg-cafe-gold/10 text-cafe-gold border border-cafe-gold/20">
+                <i data-lucide="clock" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-cafe-cream text-sm font-cinzel">Opening Hours</h3>
+                <p class="text-xs text-cafe-muted mt-1">Monday – Sunday: 11:00 AM – 10:30 PM</p>
+                <p class="text-[11px] text-emerald-400 font-semibold mt-1">Open 7 Days a Week</p>
+              </div>
+            </div>
+
+            <!-- Direct Call Card -->
+            <div class="flex items-start gap-4 p-4 rounded-xl glass-panel border border-cafe-border">
+              <div class="p-3 rounded-lg bg-cafe-gold/10 text-cafe-gold border border-cafe-gold/20">
+                <i data-lucide="phone" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-cafe-cream text-sm font-cinzel">Phone & Orders</h3>
+                <p class="text-xs text-cafe-muted mt-1">+91 98765 43210 / +91 83223 00000</p>
+                <p class="text-[11px] text-cafe-gold mt-1">Takeaway & Table Reservation Available</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Google Map / Interactive Location Frame -->
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden glass-panel border border-cafe-border p-3 h-[420px] shadow-2xl relative">
+          <iframe 
+            title="Ashvi Cafe Corner Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15370.082361131!2d73.98!3d15.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbebf2c00000001%3A0x0!2sSanquelim%2C%20Goa!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+            class="w-full h-full rounded-xl border-0 filter grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-300" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-cafe-black border-t border-cafe-border/80 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        
+        <!-- Logo & Tagline -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full border border-cafe-gold/40 flex items-center justify-center bg-cafe-card">
+            <i data-lucide="coffee" class="w-4 h-4 text-cafe-gold"></i>
+          </div>
+          <div>
+            <span class="font-cinzel text-base font-bold text-cafe-cream">ASHVI CAFÉ CORNER</span>
+            <p class="text-[10px] text-cafe-gold tracking-widest uppercase">You Will Like It</p>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex flex-wrap justify-center gap-6 text-xs text-cafe-muted uppercase tracking-wider">
+          <a href="#about" class="hover:text-cafe-gold transition-colors">About</a>
+          <a href="#signature" class="hover:text-cafe-gold transition-colors">Specialties</a>
+          <a href="#menu" class="hover:text-cafe-gold transition-colors">Menu</a>
+          <a href="#gallery" class="hover:text-cafe-gold transition-colors">Gallery</a>
+          <a href="#contact" class="hover:text-cafe-gold transition-colors">Location</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs text-cafe-muted">
+          &copy; <span id="year">2026</span> Ashvi Cafe Corner, Sanquelim. All rights reserved.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="image-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeModal()">
+    <div class="relative max-w-3xl w-full glass-panel rounded-2xl overflow-hidden border border-cafe-gold/30 p-4" onclick="event.stopPropagation()">
+      <button onclick="closeModal()" class="absolute top-4 right-4 p-2 rounded-full bg-cafe-black/80 text-cafe-cream hover:text-cafe-gold transition-colors border border-cafe-border z-10">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="rounded-xl overflow-hidden max-h-[70vh] bg-cafe-black flex items-center justify-center">
+        <img id="modal-img" src="" alt="Enlarged Food Item" class="max-h-[70vh] w-auto object-contain">
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <div>
+          <h3 id="modal-title" class="font-cinzel text-xl font-bold text-cafe-cream">Item Name</h3>
+          <p id="modal-desc" class="text-xs text-cafe-gold mt-0.5">Specialty Dish</p>
+        </div>
+        <a href="#order" onclick="closeModal()" class="px-5 py-2 rounded-full bg-cafe-gold text-cafe-black font-bold text-xs uppercase tracking-wider hover:bg-cafe-goldHover transition-colors">
+          Order This Item
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Set Dynamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+
+    if (window.innerWidth >= 1024) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+      });
+
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    }
+
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    const filterButtons = document.querySelectorAll('#menu-filter-buttons button');
+    const menuCards = document.querySelectorAll('#menu-grid .menu-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle Active Tab Styling
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-cafe-gold', 'text-cafe-black', 'active');
+          b.classList.add('bg-cafe-card', 'text-cafe-cream/80');
+        });
+
+        btn.classList.add('bg-cafe-gold', 'text-cafe-black', 'active');
+        btn.classList.remove('bg-cafe-card', 'text-cafe-cream/80');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        // Filter Menu Cards
+        menuCards.forEach(card => {
+          if (filterValue === 'all' || card.classList.contains(filterValue)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    function openModal(title, desc, imgSrc) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('image-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('image-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+</body>
+</html>
